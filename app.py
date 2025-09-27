@@ -2,53 +2,47 @@ import pandas as pd
 import scipy.stats
 import streamlit as st
 import time
+import plotly.express as px
 
+# Configuração da página e cabeçalho
+st.set_page_config(page_title="Vehicle Data Analysis Dashboard", page_icon="🚗", layout="wide")
 
-# estas são variáveis persistentes preservadas à medida que o Streamlin executa novamente esse script
-if 'experiment_no' not in st.session_state:
-    st.session_state['experiment_no'] = 0
+# Cabeçalho da aplicação
+st.title("🚗 Vehicle Data Analysis Dashboard")
+st.markdown("---")
+st.markdown("""
+**Análise Interativa de Dados de Veículos**
 
-if 'df_experiment_results' not in st.session_state:
-    st.session_state['df_experiment_results'] = pd.DataFrame(columns=['no', 'iterations', 'mean'])
+Esta aplicação fornece ferramentas de visualização interativa para analisar dados de vendas de veículos. 
+Explore a relação entre quilometragem e preços através de histogramas e gráficos de dispersão.
 
-st.header('Jogando uma moeda')
+**Funcionalidades:**
+- Criação interativa de histogramas para dados de odômetro
+- Visualização de gráfico de dispersão: odômetro vs preço
+- Interface amigável com botões e caixas de seleção
 
-chart = st.line_chart([0.5])
+*Autor: Roberto Moreno | Data: 2025-09-27*
+""")
+st.markdown("---")
 
-def toss_coin(n):
+car_data = pd.read_csv('vehicles.csv') # lendo os dados
+hist_button = st.button('Criar histograma') # criar um botão
 
-    trial_outcomes = scipy.stats.bernoulli.rvs(p=0.5, size=n)
+if hist_button: # se o botão for clicado
+    # escrever uma mensagem
+    st.write('Criando um histograma para o conjunto de dados de anúncios de vendas de carros')
+    
+    # criar um histograma
+    fig = px.histogram(car_data, x="odometer")
 
-    mean = None
-    outcome_no = 0
-    outcome_1_count = 0
+    # exibir um gráfico Plotly interativo
+    st.plotly_chart(fig, use_container_width=True)
 
-    for r in trial_outcomes:
-        outcome_no +=1
-        if r == 1:
-            outcome_1_count += 1
-        mean = outcome_1_count / outcome_no
-        chart.add_rows([mean])
-        time.sleep(0.05)
+# criar uma caixa de seleção
+build_histogram = st.checkbox('Criar um histograma')
 
-    return mean
-
-number_of_trials = st.slider('Número de tentativas?', 1, 1000, 10)
-start_button = st.button('Executar')
-
-if start_button:
-    st.write(f'Executando o experimento de {number_of_trials} tentativas.')
-    st.session_state['experiment_no'] += 1
-    mean = toss_coin(number_of_trials)
-    st.session_state['df_experiment_results'] = pd.concat([
-        st.session_state['df_experiment_results'],
-        pd.DataFrame(data=[[st.session_state['experiment_no'],
-                            number_of_trials,
-                            mean]],
-                     columns=['no', 'iterations', 'mean'])
-        ],
-        axis=0)
-    st.session_state['df_experiment_results'] = \
-        st.session_state['df_experiment_results'].reset_index(drop=True)
-
-st.write(st.session_state['df_experiment_results'])
+if build_histogram: # se a caixa de seleção for selecionada
+    st.write('Criando um histograma para a coluna odometer')
+    
+    fig = px.scatter(car_data, x="odometer", y="price") # criar um gráfico de dispersão
+    st.plotly_chart(fig, use_container_width=True)
