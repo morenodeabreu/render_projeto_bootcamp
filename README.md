@@ -1,10 +1,10 @@
 # 🚗 Dashboard de Análise de Dados de Veículos
 
 ## 🌐 Aplicação Online
-**Acesse a aplicação:** https://render-projeto-bootcamp.onrender.com
+
+**Acesse a aplicação:** <https://render-projeto-bootcamp.onrender.com>
 
 ## 📋 Sobre o Projeto
-
 Este projeto é uma aplicação web interativa desenvolvida com **Streamlit** para análise de dados de veículos. A aplicação permite aos usuários explorar e visualizar informações sobre anúncios de vendas de carros através de gráficos interativos.
 
 ## 🎯 Funcionalidades
@@ -25,6 +25,7 @@ Este projeto é uma aplicação web interativa desenvolvida com **Streamlit** pa
 ## 📊 Dados
 
 O projeto utiliza um conjunto de dados de veículos (`vehicles.csv`) contendo informações sobre:
+
 - Quilometragem (odômetro)
 - Preços dos veículos
 - Outras características relacionadas a anúncios de vendas
@@ -32,17 +33,20 @@ O projeto utiliza um conjunto de dados de veículos (`vehicles.csv`) contendo in
 ## 🚀 Como Executar Localmente
 
 1. Clone o repositório:
+
 ```bash
 git clone https://github.com/seu-usuario/render_projeto_bootcamp.git
 cd render_projeto_bootcamp
 ```
 
 2. Instale as dependências:
+
 ```bash
 pip install streamlit pandas plotly scipy
 ```
 
 3. Execute a aplicação:
+
 ```bash
 streamlit run app.py
 ```
@@ -51,7 +55,7 @@ streamlit run app.py
 
 ## 📁 Estrutura do Projeto
 
-```
+```text
 render_projeto_bootcamp/
 ├── app.py              # Aplicação principal Streamlit
 ├── vehicles.csv        # Conjunto de dados dos veículos
@@ -72,20 +76,22 @@ A aplicação possui uma interface limpa e intuitiva com:
 ## 📈 Análises Disponíveis
 
 ### Histograma de Quilometragem
+
 - Mostra a distribuição da quilometragem dos veículos no conjunto de dados
 - Permite identificar padrões na distribuição dos dados
 - Útil para entender a faixa de quilometragem mais comum
 
 ### Gráfico de Dispersão: Quilometragem vs Preço
+
 - Visualiza a relação entre quilometragem e preço dos veículos
 - Permite identificar tendências e correlações
 - Ajuda a entender como a quilometragem afeta o valor do veículo
 
 ## 👨‍💻 Autor
 
-**Roberto Moreno**
-- Data: 2025-09-27
-- Projeto desenvolvido durante bootcamp de análise de dados
+- **Nome:** Roberto Moreno
+- **Data:** 2025-09-27
+- **Projeto:** Desenvolvido durante bootcamp de análise de dados
 
 ## 📝 Licença
 
